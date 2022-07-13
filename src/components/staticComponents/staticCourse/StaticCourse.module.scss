@@ -1,0 +1,8 @@
+.staticContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    p:first-child{
+        margin-right: 5px;
+    }
+}
