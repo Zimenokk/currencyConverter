@@ -10,6 +10,8 @@ const SvgSelector = ({id}) => {
             </svg>
 
 
+
+
         default:
             return <svg></svg>
     }
