@@ -3,15 +3,18 @@ import styles from './ConvertItem.module.scss'
 import MuiSelect from "../../../../../design-core/select/Select";
 import MuiInput from "../../../../../design-core/input/Input";
 
-const ConvertItem = ({action, currencyCount, currencyName}) => {
+const ConvertItem = ({...props}) => {
+
+
+
     return (
         <div className={styles.convertItem}>
-            <p>{action}:</p>
+            <p>{props.action}:</p>
             <div className={styles.inputContainer}>
-                <MuiInput/>
-                <MuiSelect/>
+                <MuiInput value={props.inputCountData} setValue={props.setInputCountData}/>
+                <MuiSelect value={props.inputNameData} setValue={props.setInputNameData} completeObj={props.currencyObjectData}/>
             </div>
-            <p>{currencyName}</p>
+            <p>{props.currencyName}</p>
         </div>
     );
 };

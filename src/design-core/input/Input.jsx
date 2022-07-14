@@ -1,12 +1,14 @@
 import React from 'react';
-import {Stack, TextField} from "@mui/material";
+import {TextField} from "@mui/material";
 
-const MuiInput = () => {
+const MuiInput = ({value, setValue}) => {
     return (
         <TextField
             // fullWidth
             size={'small'}
             variant={'standard'}
+            value={value}
+            onChange={(e)=>{setValue(e.target.value)}}
         />
     );
 };

@@ -1,7 +1,8 @@
 import React from 'react';
 import {Box, TextField, MenuItem} from '@mui/material'
 
-const MuiSelect = () => {
+const MuiSelect = ({value, setValue,completeObj}) => {
+    console.log(completeObj)
     return (
         <Box width="100px">
             <TextField
@@ -10,9 +11,10 @@ const MuiSelect = () => {
                 fullWidth
                 size={"small"}
                 variant="standard"
+                value={value}
+                onChange={(e)=>{setValue(e.target.value)}}
             >
-                <MenuItem  value={"UAH"}>UAH</MenuItem>
-                <MenuItem  value={"USD"}>USD</MenuItem>
+                {completeObj.map((item)=>(<MenuItem  key={item.cc} value={item.cc}>{item.cc}</MenuItem>))}
             </TextField>
         </Box>
     );
