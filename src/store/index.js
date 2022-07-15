@@ -1,5 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit'
-import {updateCurrencySlice} from "./updateCurrencySlice";
+import updateCurrencySlice from "./updateCurrencySlice";
 
 
 

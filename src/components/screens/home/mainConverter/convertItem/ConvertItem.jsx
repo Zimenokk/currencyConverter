@@ -2,9 +2,12 @@ import React from 'react';
 import styles from './ConvertItem.module.scss'
 import MuiSelect from "../../../../../design-core/select/Select";
 import MuiInput from "../../../../../design-core/input/Input";
+import {useSelector} from "react-redux";
 
 const ConvertItem = ({...props}) => {
 
+    const list = useSelector(state => state.createCurrency.list);
+    const currencyName = list.filter(item => (item.cc === props.inputNameData));
 
 
     return (
@@ -12,9 +15,10 @@ const ConvertItem = ({...props}) => {
             <p>{props.action}:</p>
             <div className={styles.inputContainer}>
                 <MuiInput value={props.inputCountData} setValue={props.setInputCountData}/>
-                <MuiSelect value={props.inputNameData} setValue={props.setInputNameData} completeObj={props.currencyObjectData}/>
+                <MuiSelect value={props.inputNameData} setValue={props.setInputNameData} completeObj={list}/>
+                {}
             </div>
-            <p>{props.currencyName}</p>
+            <p>{currencyName[0]?.txt}</p>
         </div>
     );
 };

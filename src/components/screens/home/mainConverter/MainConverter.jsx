@@ -1,61 +1,60 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import ConvertItem from "./convertItem/ConvertItem";
 import styles from './MainConverter.module.scss'
-import axios from "axios";
-import {useDispatch, useSelector} from 'react-redux';
-import {
-    updateCurrencyFromCode,
-    updateCurrencyFromCount,
-    updateCurrencyToCode,
-    updateCurrencyToCount
-} from "../../../../store/updateCurrencySlice";
+import {useSelector} from "react-redux";
+import {useActions} from "../../../../utils";
 
 const MainConverter = () => {
     //convert operations
-    const [data, setData] = useState([{r030: 1, txt: 'Українська гривня', rate: 1, cc: 'UAH', exchangedate: ''}])
-    useEffect(() => {
-        axios.get(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json`).then(res => {
-            setData(state=>[...state, ...res.data])
-        })
-    }, []);
-
-    console.log(data)
 
 
-    const [fromCountData, setFromCountData] = useState(0)
-    const [fromNameData, setFromNameData] = useState('')
-    const [toCountData, setToCountData] = useState(0);
-    const [toNameData, setToNameData] = useState(0);
+    const {updateCurrFromCountData,updateCurrFromNameData,updateCurrToCountData,updateCurrToNameData}=useActions()
+    const currencyStore = useSelector(state=>state.createCurrency)
 
-    let consoleOb = [fromCountData, fromNameData, toCountData, toNameData]
-    console.log(consoleOb)
+    function convertEngine(list, value,currencyToNameData, currencyFromNameData){
+        const currencyToRate = list.filter(item=>item.cc===currencyToNameData)[0]?.rate || 1;
+        const currencyFromRate = list.filter(item=>item.cc===currencyFromNameData)[0]?.rate || 1;
 
-    // const currencyStoreSelector = useSelector(state=>state.createCurrency)
-    // console.log(currencyStoreSelector)
+        return (currencyToRate/currencyFromRate)*value
+    }
 
-    updateCurrencyFromCount(fromCountData)
-    updateCurrencyFromCode(fromNameData)
-    updateCurrencyToCount(toCountData)
-    updateCurrencyToCode(toNameData)
+    function updateFromCount(value){
+        updateCurrFromCountData(value)
+        // console.log(foo(currencyStore.list, value, currencyStore.currToNameData))
+        updateCurrToCountData(convertEngine(currencyStore.list, value, currencyStore.currFromCountData,currencyStore.currToCountData))
+
+    }
+     function updateFromName(value){
+        updateCurrFromNameData(value)
+    }
+    function updateToCount(value){
+        updateCurrToCountData(value)
+        updateCurrFromCountData(convertEngine(currencyStore.list, value, currencyStore.currToCountData,currencyStore.currFromCountData))
+    }
+    function updateToName(value){
+        updateCurrToNameData(value)
+    }
+
+
+
 
     return (
         <div className={styles.mainConverter}>
             <ConvertItem action={"Віддаю"}
                          currencyName={"Українська гривня"}
-                         inputCountData={fromCountData}
-                         setInputCountData={setFromCountData}
-                         inputNameData={fromNameData}
-                         setInputNameData={setFromNameData}
-                         currencyObjectData={data}
+                         inputCountData={currencyStore.currFromCountData}
+                         setInputCountData={updateFromCount}
+                         inputNameData={currencyStore.currFromNameData}
+                         setInputNameData={updateFromName}
             />
-            {/*<ConvertItem*/}
-            {/*    action={"Отримую"}*/}
-            {/*    currencyName={"Американський доллар"}*/}
-            {/*    inputCountData={toCountData}*/}
-            {/*    setInputCountData={setToCountData}*/}
-            {/*    inputNameData={toNameData}*/}
-            {/*    setInputNameData={setToNameData}*/}
-            {/*/>*/}
+            <ConvertItem
+                action={"Отримую"}
+                currencyName={"Американський доллар"}
+                inputCountData={currencyStore.currToCountData}
+                setInputCountData={updateToCount}
+                inputNameData={currencyStore.currToNameData}
+                setInputNameData={updateToName}
+            />
         </div>
     );
 };
