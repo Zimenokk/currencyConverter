@@ -5,6 +5,8 @@ import MuiInput from "../../../../../design-core/input/Input";
 
 const ConvertItem = ({...props}) => {
 
+    // const list = useSelector(state => state.createCurrency.list);
+    const currencyName = props.list.filter(item => (item.cc === props.inputNameData));
 
 
     return (
@@ -12,9 +14,10 @@ const ConvertItem = ({...props}) => {
             <p>{props.action}:</p>
             <div className={styles.inputContainer}>
                 <MuiInput value={props.inputCountData} setValue={props.setInputCountData}/>
-                <MuiSelect value={props.inputNameData} setValue={props.setInputNameData} completeObj={props.currencyObjectData}/>
+                <MuiSelect value={props.inputNameData} setValue={props.setInputNameData} completeObj={props.list}/>
+                {}
             </div>
-            <p>{props.currencyName}</p>
+            <p>{currencyName[0]?.txt}</p>
         </div>
     );
 };

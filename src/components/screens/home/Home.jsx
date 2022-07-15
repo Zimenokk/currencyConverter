@@ -2,14 +2,30 @@ import React from 'react';
 import Layout from "../../../layout/Layout";
 import MainConverter from "./mainConverter/MainConverter";
 import styles from './Home.module.scss'
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {useActions} from "../../../utils";
 
 const Home = () => {
 
+    const {updateList}=useActions();
+
+
+    const [list, setList] = useState([{r030: 1, txt: 'Українська гривня', rate: 1, cc: 'UAH', exchangedate: ''}]);
+
+    useEffect(() => {
+        axios.get(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json`).then(res => {
+            setList(state => [...state, ...res.data])
+        })
+    }, []);
+
+
+
     return (
-        <Layout>
+        <Layout list={list}>
             <div className={styles.home}>
                 <h1>Конвертуйте на здоров’я &#128184;</h1>
-                <MainConverter/>
+                <MainConverter list={list}/>
             </div>
 
         </Layout>

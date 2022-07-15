@@ -2,7 +2,6 @@ import React from 'react';
 import {Box, TextField, MenuItem} from '@mui/material'
 
 const MuiSelect = ({value, setValue,completeObj}) => {
-    console.log(completeObj)
     return (
         <Box width="100px">
             <TextField
