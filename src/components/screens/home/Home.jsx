@@ -10,19 +10,22 @@ const Home = () => {
 
     const {updateList}=useActions();
 
+
+    const [list, setList] = useState([{r030: 1, txt: 'Українська гривня', rate: 1, cc: 'UAH', exchangedate: ''}]);
+
     useEffect(() => {
         axios.get(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json`).then(res => {
-            updateList(res.data)
+            setList(state => [...state, ...res.data])
         })
     }, []);
 
 
 
     return (
-        <Layout>
+        <Layout list={list}>
             <div className={styles.home}>
                 <h1>Конвертуйте на здоров’я &#128184;</h1>
-                <MainConverter/>
+                <MainConverter list={list}/>
             </div>
 
         </Layout>

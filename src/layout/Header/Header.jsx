@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './Header.module.scss'
 import SvgSelector from "../../components/staticComponents/SvgSelector";
 import StaticCourse from "../../components/staticComponents/staticCourse/StaticCourse";
-import {useSelector} from "react-redux";
 
-const Header = () => {
-    const list = useSelector(state=>state.createCurrency.list);
+const Header = ({list}) => {
+    // const list = useSelector(state=>state.createCurrency.list);
+
     const dollar = list[26]
     const euro = list[33]
-
 
 
     return (

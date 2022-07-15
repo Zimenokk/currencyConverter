@@ -7,10 +7,6 @@ export const updateCurrencySlice = createSlice({
         currFromNameData: "UAH",
         currToCountData: 0,
         currToNameData:"USD",
-        list:[{r030: 1, txt: 'Українська гривня', rate: 1, cc: 'UAH', exchangedate: ''}],
-        selectedFrom:{r030: 1, txt: 'Українська гривня', rate: 1, cc: 'UAH', exchangedate: ''},
-        selectedTo:{},
-
     },
     reducers: {
         updateCurrFromCountData: (state, action) => {
@@ -25,9 +21,7 @@ export const updateCurrencySlice = createSlice({
         updateCurrToNameData: (state, action) => {
             state.currToNameData = action.payload
         },
-        updateList:(state, action)=>{
-            state.list=state.list.concat(action.payload)
-        }
+
     }
 })
 

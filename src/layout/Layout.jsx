@@ -7,7 +7,7 @@ import '../assets/styles/globals.scss'
 const Layout = ({...props}) => {
     return (
         <div className={styles.layout}>
-            <Header data={props.data} />
+            <Header list={props.list} />
             <div className={"mainContainer"}>
                 {props.children}
             </div>
