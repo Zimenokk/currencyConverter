@@ -1,3 +1,4 @@
+$pc:1340px;
 $laptop: 1024px;
 $tablet: 768px;
 $mobile: 480px;
@@ -14,6 +15,10 @@ $mobile: 480px;
   } @else if $media == laptop {
     @media only screen and (max-width: $laptop) {
       @content;
+    }
+  }@else if $media == pc {
+    @media only screen and (max-width: $pc){
+      @content
     }
   }
 }

@@ -1,10 +1,11 @@
+@import "../../../../../assets/styles/media";
 .convertItem{
   width: 47%;
   background-color: white;
   display: flex;
   flex-direction: column;
   text-align: left;
-  padding: 25px 50px 20px 50px;
+  padding: 25px 5% 20px 5%;
   border-radius: 30px;
   p:first-child{
     color: #6038FF;
@@ -16,6 +17,20 @@
     font-size: 1.25rem;
     font-weight: 500;
     line-height: 24px;
+    @include media(laptop){
+      font-size: 1rem;
+    }
+  }
+  @include media(laptop){
+    font-size: 1rem;
+    padding: 25px 3% 20px 3%;
+  }
+  @include media(tablet){
+    width: 90%;
+    margin: 2% auto;
+  }
+  @include media(mobile){
+    width: 95%;
   }
 }
 .inputContainer{
@@ -24,6 +39,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: end;
 
 }

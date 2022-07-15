@@ -1,8 +1,17 @@
+@import '../../../assets/styles/media';
 .staticContainer{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     p:first-child{
         margin-right: 5px;
+        @include media(tablet){
+        }
+    }
+    @include media(tablet){
+        justify-content: space-around;
+    }
+    @include media(mobile){
+        justify-content: space-around;
     }
 }

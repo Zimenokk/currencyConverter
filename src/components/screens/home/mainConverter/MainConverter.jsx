@@ -33,9 +33,6 @@ const MainConverter = ({list}) => {
         updateCurrToNameData(value)
     }
 
-
-
-
     return (
         <div className={styles.mainConverter}>
             <ConvertItem action={"Віддаю"}

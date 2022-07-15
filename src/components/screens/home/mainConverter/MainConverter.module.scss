@@ -1,6 +1,10 @@
+@import "../../../../assets/styles/media";
 .mainConverter{
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  @include media(tablet){
+    flex-direction: column;
+  }
 }
