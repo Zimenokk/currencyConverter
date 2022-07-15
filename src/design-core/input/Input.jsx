@@ -8,6 +8,7 @@ const MuiInput = ({value, setValue}) => {
             size={'small'}
             variant={'standard'}
             value={value}
+            type='number'
             onChange={(e)=>{setValue(e.target.value)}}
         />
     );

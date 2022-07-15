@@ -4,9 +4,9 @@ export const updateCurrencySlice = createSlice({
     name: 'createCurrency',
     initialState: {
         currFromCountData: 0,
-        currFromNameData: "UAH",
+        currFromNameData: "USD",
         currToCountData: 0,
-        currToNameData:"USD",
+        currToNameData:"UAH",
     },
     reducers: {
         updateCurrFromCountData: (state, action) => {
