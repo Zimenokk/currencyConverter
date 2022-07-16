@@ -1,37 +1,34 @@
 import React from 'react';
+import {useSelector} from "react-redux";
 import ConvertItem from "./convertItem/ConvertItem";
 import styles from './MainConverter.module.scss'
-import {useSelector} from "react-redux";
 import {useActions} from "../../../../utils";
+import convertEngine from "../../../../utils/convertUpdate";
+
 
 const MainConverter = ({list}) => {
 
-    const {updateCurrFromCountData,updateCurrFromNameData,updateCurrToCountData,updateCurrToNameData}=useActions()
-    const currencyStore = useSelector(state=>state.createCurrency)
+    const {updateCurrFromCountData, updateCurrFromNameData, updateCurrToCountData, updateCurrToNameData} = useActions()
+    const currencyStore = useSelector(state => state.createCurrency)
 
-    function convertEngine(list, value,currencyFromNameData, currencyToNameData){
-        const currencyToRate = list.filter(item=>item.cc===currencyToNameData)[0]?.rate;
-        const currencyFromRate = list.filter(item=>item.cc===currencyFromNameData)[0]?.rate;
-        console.log(currencyToNameData)
-
-        return ((currencyToRate/currencyFromRate)*value).toFixed(2)
-    }
-
-    function updateFromCount(value){
+    function updateFromCount(value) {
         updateCurrFromCountData(value)
-        updateCurrToCountData(convertEngine(list, value,currencyStore.currToNameData, currencyStore.currFromNameData))
-
+        updateCurrToCountData(convertEngine(list, value, currencyStore.currToNameData, currencyStore.currFromNameData))
     }
-     function updateFromName (value){
-         updateCurrFromNameData(value)
-     }
-    function updateToCount(value){
+
+    function updateFromName(value) {
+        updateCurrFromNameData(value)
+    }
+
+    function updateToCount(value) {
         updateCurrToCountData(value)
         updateCurrFromCountData(convertEngine(list, value, currencyStore.currFromNameData, currencyStore.currToNameData))
     }
-    function updateToName(value){
+
+    function updateToName(value) {
         updateCurrToNameData(value)
     }
+
 
     return (
         <div className={styles.mainConverter}>

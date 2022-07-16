@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit'
 
 export const updateCurrencySlice = createSlice({
     name: 'createCurrency',
@@ -6,7 +6,7 @@ export const updateCurrencySlice = createSlice({
         currFromCountData: 0,
         currFromNameData: "USD",
         currToCountData: 0,
-        currToNameData:"UAH",
+        currToNameData: "UAH",
     },
     reducers: {
         updateCurrFromCountData: (state, action) => {
@@ -26,5 +26,10 @@ export const updateCurrencySlice = createSlice({
 })
 
 export default updateCurrencySlice.reducer
-export const {  updateCurrFromCountData, updateCurrFromNameData,updateCurrToCountData, updateCurrToNameData} = updateCurrencySlice.actions
+export const {
+    updateCurrFromCountData,
+    updateCurrFromNameData,
+    updateCurrToCountData,
+    updateCurrToNameData
+} = updateCurrencySlice.actions
 export const updateCurrencyActions = updateCurrencySlice.actions;
