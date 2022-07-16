@@ -5,7 +5,6 @@ import MuiInput from "../../../../../design-core/input/Input";
 
 const ConvertItem = ({...props}) => {
 
-    // const list = useSelector(state => state.createCurrency.list);
     const currencyName = props.list.filter(item => (item.cc === props.inputNameData));
 
 
