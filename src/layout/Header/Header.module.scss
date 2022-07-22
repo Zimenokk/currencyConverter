@@ -46,4 +46,9 @@
     flex-direction: column;
     width: 45%;
   }
+  @include media(mobile) {
+    //flex-direction: column;
+    width: 50%;
+  }
+
 }
